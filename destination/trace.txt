@@ -1,0 +1,16 @@
+
+2024-05-29 11:57:58: File retrieval initiated
+2024-05-29 11:57:58: Transferred fie2.csv from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination
+2024-05-29 11:57:58: Transferred file1.csv from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination
+
+2024-05-29 11:59:21: File retrieval initiated
+2024-05-29 11:59:21: Transferred fie2.csv from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination
+2024-05-29 11:59:21: Transferred file1.csv from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination
+
+2024-05-29 12:00:24: File retrieval initiated
+2024-05-29 12:00:24: Transferred fie2.csv from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination
+2024-05-29 12:00:24: Transferred file1.csv from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination
+
+2024-05-29 12:01:05: File retrieval initiated
+2024-05-29 12:01:05: Transferred file1_linx.txt from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination
+2024-05-29 12:01:05: Transferred file2.txt from /home/riadharmel/Desktop/source/ to C:\Users\riad_harmel\Desktop\transfer_handler\destination

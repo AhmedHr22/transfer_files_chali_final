@@ -1,0 +1,1 @@
+{"machine1_source_path": "C:\\Users\\riad_harmel\\Desktop\\transfer_handler\\source", "machine2_destination_path": "/home/riadharmel/Desktop/destination/", "host": "10.10.1.54", "username": "riadharmel", "frequency": 2, "file_type": "txt", "transfer_method": "copy"}
