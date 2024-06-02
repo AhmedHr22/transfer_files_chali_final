@@ -137,6 +137,17 @@ def create_gui():
     root.geometry("550x450")
     root.resizable(False, False)
 
+    # Set background color to #FFFFFF
+    root.config(bg="#FFFFFF")
+
+    # Create a custom style to set the background color of frames
+    style = ttk.Style()
+    style.configure("Custom.TFrame", background="#F1F1F1")
+
+    
+
+
+
     script_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
      # Specify the relative path to the image file
     logo_path = os.path.join(script_dir, "images/images.png")
@@ -146,20 +157,12 @@ def create_gui():
     logo = ImageTk.PhotoImage(image)
 
     # Create a label to display the logo
-    logo_label = tk.Label(root, image=logo)
+    logo_label = tk.Label(root, image=logo, bg="#FFFFFF")
     logo_label.image = logo  # Keep a reference to avoid garbage collection
     logo_label.pack(pady=10)  # Add some padding to position the logo nicely# Add some padding to position the logo nicely
 
     send_form_last_inputs = load_send_form_inputs()
     get_form_last_inputs = load_get_form_inputs()
-
-    # font_dir = os.path.join(script_dir, "fonts")
-    # RedditMono-Regular_font_path = os.path.join(font_dir, "RedditMono-Regular.ttf")
-    # root.option_add("*Font", tkfont.Font(family="Roboto", size=10, name="Roboto", exists=False))
-    # root.option_add("*TLabel.Font", tkfont.Font(family="Roboto", size=10))
-    # root.option_add("*TButton.Font", tkfont.Font(family="Roboto", size=10))
-    # root.option_add("*TEntry.Font", tkfont.Font(family="Roboto", size=10))
-    # root.option_add("*TCombobox.Font", tkfont.Font(family="Roboto", size=10))
 
 
     def create_machine1_form(frame):
@@ -265,11 +268,11 @@ def create_gui():
             transfer_files(source_path, destination_path, host, username, password, transfer_method, file_type)
 
         # Create the buttons
-        transfer_button = tk.Button(frame, text="Schedule Transfer", command=on_transfer_button_click)
+        transfer_button = tk.Button(frame, text="Schedule Transfer", command=on_transfer_button_click,bg="#043052", fg="#FFFFFF")
         transfer_button.grid(row=8, column=0, columnspan=1, pady=10)
 
         # Button to force transfer
-        force_transfer_button = tk.Button(frame, text="Force Transfer", command=on_force_transfer_button_click)
+        force_transfer_button = tk.Button(frame, text="Force Transfer", command=on_force_transfer_button_click,bg="#043052", fg="#FFFFFF")
         force_transfer_button.grid(row=8, column=1, columnspan=1, pady=10) 
 
         # Create a label for the copyright text
@@ -280,36 +283,36 @@ def create_gui():
 
     def create_machine2_form(frame):
         # Create the form elements for Machine 2
-        tk.Label(frame, text="Machine 2 Source Path:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Machine 2 Source Path:",).grid(row=0, column=0, padx=5, pady=5, sticky="e")
         machine2_source_entry = tk.Entry(frame, width=60)
         machine2_source_entry.grid(row=0, column=1, padx=5, pady=5)
         machine2_source_entry.insert(0, get_form_last_inputs.get('machine2_source_path', ''))
         
-        tk.Label(frame, text="Machine 1 destination Path:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Machine 1 destination Path:",).grid(row=1, column=0, padx=5, pady=5, sticky="e")
         machine1_destination_entry = tk.Entry(frame, width=60)
         machine1_destination_entry.grid(row=1, column=1, padx=5, pady=5)
         machine1_destination_entry.insert(0, get_form_last_inputs.get('machine1_destination_path', ''))
 
-        tk.Label(frame, text="Host (IP or hostname):").grid(row=2, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Host (IP or hostname):",).grid(row=2, column=0, padx=5, pady=5, sticky="e")
         host_entry = tk.Entry(frame, width=60)
         host_entry.grid(row=2, column=1, padx=5, pady=5)
         host_entry.insert(0, get_form_last_inputs.get('host', ''))
 
-        tk.Label(frame, text="Username:").grid(row=3, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Username:",).grid(row=3, column=0, padx=5, pady=5, sticky="e")
         username_entry = tk.Entry(frame, width=60)
         username_entry.grid(row=3, column=1, padx=5, pady=5)
         username_entry.insert(0, get_form_last_inputs.get('username', ''))
 
-        tk.Label(frame, text="Password:").grid(row=4, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Password:",).grid(row=4, column=0, padx=5, pady=5, sticky="e")
         password_entry = tk.Entry(frame, width=60, show='*')
         password_entry.grid(row=4, column=1, padx=5, pady=5)
 
-        tk.Label(frame, text="Frequency (minutes):").grid(row=5, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Frequency (minutes):",).grid(row=5, column=0, padx=5, pady=5, sticky="e")
         frequency_entry = tk.Entry(frame, width=10)
         frequency_entry.grid(row=5, column=1, padx=5, pady=5, sticky="w")
         frequency_entry.insert(0, get_form_last_inputs.get('frequency', ''))
 
-        tk.Label(frame, text="File Type:").grid(row=6, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="File Type:",).grid(row=6, column=0, padx=5, pady=5, sticky="e")
         file_type_var = tk.StringVar(value=get_form_last_inputs.get('file_type', 'txt'))
         file_type_spinner = ttk.Combobox(frame, textvariable=file_type_var, values=["txt", "csv"], state="readonly")
         file_type_spinner.grid(row=6, column=1, padx=5, pady=5)
@@ -380,22 +383,24 @@ def create_gui():
             messagebox.showinfo("Scheduled", f"Transfer scheduled every {frequency} minutes.")
 
         # Button to schedule get transfer
-        transfer_get_button = tk.Button(frame, text="Schedule Transfer get", command=on_transfer_get_button_click)
+        transfer_get_button = tk.Button(frame, text="Schedule Transfer get", command=on_transfer_get_button_click,bg="#043052", fg="#FFFFFF")
         transfer_get_button.grid(row=8, column=0, columnspan=1, pady=10)
         
         # Button to force get files
-        force_get_files_button = tk.Button(frame, text="get files", command=on_get_files_button_click)
+        force_get_files_button = tk.Button(frame, text="get files", command=on_get_files_button_click,bg="#043052", fg="#FFFFFF")
         force_get_files_button.grid(row=8, column=1, columnspan=1, pady=10)
 
         # Create a label for the copyright text
-        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("calibri", 10))
+        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("Arial", 10))
         copyright_label.grid(row=9, column=0, columnspan=2, pady=10)  # Position at bottom-right corner
 
     notebook = ttk.Notebook(root)
     notebook.pack(fill='both', expand=True)
+    
+    
     # Create frames for each tab
-    machine1_frame = ttk.Frame(notebook)
-    machine2_frame = ttk.Frame(notebook)
+    machine1_frame = ttk.Frame(notebook, style="Custom.TFrame")
+    machine2_frame = ttk.Frame(notebook, style="Custom.TFrame")
 
     notebook.add(machine1_frame, text="Machine 1")
     notebook.add(machine2_frame, text="Machine 2")
