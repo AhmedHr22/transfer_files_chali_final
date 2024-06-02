@@ -138,7 +138,7 @@ def create_gui():
     logo_path = os.path.join(script_dir, "images/images.png")
     # Load and resize the logo image using Pillow
     image = Image.open(logo_path)
-    image = image.resize((300, 100), Image.BOX)  # Resize the image to pixels
+    image = image.resize((300, 63), Image.BOX)  # Resize the image to pixels
     logo = ImageTk.PhotoImage(image)
 
     # Create a label to display the logo
@@ -153,27 +153,27 @@ def create_gui():
     def create_machine1_form(frame):
         # Create the form elements for Machine 1
         tk.Label(frame, text="Machine 1 Source Path:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
-        machine1_source_entry = tk.Entry(frame, width=50)
+        machine1_source_entry = tk.Entry(frame, width=60)
         machine1_source_entry.grid(row=0, column=1, padx=5, pady=5)
         machine1_source_entry.insert(0, send_form_last_inputs.get('machine1_source_path', ''))
 
         tk.Label(frame, text="Machine 2 Destination Path:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
-        machine2_destination_entry = tk.Entry(frame, width=50)
+        machine2_destination_entry = tk.Entry(frame, width=60)
         machine2_destination_entry.grid(row=1, column=1, padx=5, pady=5)
         machine2_destination_entry.insert(0, send_form_last_inputs.get('machine2_destination_path', ''))
 
         tk.Label(frame, text="Host (IP or hostname):").grid(row=2, column=0, padx=5, pady=5, sticky="e")
-        host_entry = tk.Entry(frame, width=50)
+        host_entry = tk.Entry(frame, width=60)
         host_entry.grid(row=2, column=1, padx=5, pady=5)
         host_entry.insert(0, send_form_last_inputs.get('host', ''))
 
         tk.Label(frame, text="Username:").grid(row=3, column=0, padx=5, pady=5, sticky="e")
-        username_entry = tk.Entry(frame, width=50)
+        username_entry = tk.Entry(frame, width=60)
         username_entry.grid(row=3, column=1, padx=5, pady=5)
         username_entry.insert(0, send_form_last_inputs.get('username', ''))
 
         tk.Label(frame, text="Password:").grid(row=4, column=0, padx=5, pady=5, sticky="e")
-        password_entry = tk.Entry(frame, width=50, show='*')
+        password_entry = tk.Entry(frame, width=60, show='*')
         password_entry.grid(row=4, column=1, padx=5, pady=5)
 
         tk.Label(frame, text="Frequency (minutes):").grid(row=5, column=0, padx=5, pady=5, sticky="e")
@@ -260,31 +260,36 @@ def create_gui():
         force_transfer_button = tk.Button(frame, text="Force Transfer", command=on_force_transfer_button_click)
         force_transfer_button.grid(row=8, column=1, columnspan=1, pady=10) 
 
+        # Create a label for the copyright text
+        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("Arial", 10))
+        copyright_label.grid(row=9, column=0, columnspan=2, pady=10)  # Position at bottom-right corner
+
+
 
     def create_machine2_form(frame):
         # Create the form elements for Machine 2
         tk.Label(frame, text="Machine 2 Source Path:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
-        machine2_source_entry = tk.Entry(frame, width=50)
+        machine2_source_entry = tk.Entry(frame, width=60)
         machine2_source_entry.grid(row=0, column=1, padx=5, pady=5)
         machine2_source_entry.insert(0, get_form_last_inputs.get('machine2_source_path', ''))
         
         tk.Label(frame, text="Machine 1 destination Path:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
-        machine1_destination_entry = tk.Entry(frame, width=50)
+        machine1_destination_entry = tk.Entry(frame, width=60)
         machine1_destination_entry.grid(row=1, column=1, padx=5, pady=5)
         machine1_destination_entry.insert(0, get_form_last_inputs.get('machine1_destination_path', ''))
 
         tk.Label(frame, text="Host (IP or hostname):").grid(row=2, column=0, padx=5, pady=5, sticky="e")
-        host_entry = tk.Entry(frame, width=50)
+        host_entry = tk.Entry(frame, width=60)
         host_entry.grid(row=2, column=1, padx=5, pady=5)
         host_entry.insert(0, get_form_last_inputs.get('host', ''))
 
         tk.Label(frame, text="Username:").grid(row=3, column=0, padx=5, pady=5, sticky="e")
-        username_entry = tk.Entry(frame, width=50)
+        username_entry = tk.Entry(frame, width=60)
         username_entry.grid(row=3, column=1, padx=5, pady=5)
         username_entry.insert(0, get_form_last_inputs.get('username', ''))
 
         tk.Label(frame, text="Password:").grid(row=4, column=0, padx=5, pady=5, sticky="e")
-        password_entry = tk.Entry(frame, width=50, show='*')
+        password_entry = tk.Entry(frame, width=60, show='*')
         password_entry.grid(row=4, column=1, padx=5, pady=5)
 
         tk.Label(frame, text="Frequency (minutes):").grid(row=5, column=0, padx=5, pady=5, sticky="e")
@@ -370,6 +375,10 @@ def create_gui():
         force_get_files_button = tk.Button(frame, text="get files", command=on_get_files_button_click)
         force_get_files_button.grid(row=8, column=1, columnspan=1, pady=10)
 
+        # Create a label for the copyright text
+        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("calibri", 10))
+        copyright_label.grid(row=9, column=0, columnspan=2, pady=10)  # Position at bottom-right corner
+
     notebook = ttk.Notebook(root)
     notebook.pack(fill='both', expand=True)
     # Create frames for each tab
@@ -378,6 +387,8 @@ def create_gui():
 
     notebook.add(machine1_frame, text="Machine 1")
     notebook.add(machine2_frame, text="Machine 2")
+
+   
 
     # Create forms for each tab
     create_machine1_form(machine1_frame)
