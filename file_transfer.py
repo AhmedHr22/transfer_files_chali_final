@@ -135,7 +135,7 @@ def create_gui():
     root.title("File Transfer")
 
     # Set the window size and make it non-resizable
-    root.geometry("550x450")
+    root.geometry("620x450")
     root.resizable(False, False)
 
     # Set background color to #FFFFFF
@@ -161,44 +161,47 @@ def create_gui():
     send_form_last_inputs = load_send_form_inputs()
     get_form_last_inputs = load_get_form_inputs()
 
+    # font = ("Palatino Linotype", 12)
+    font = ("Courier New",10)
+
 
     def create_machine1_form(frame):
         # Create the form elements for Machine 1
-        tk.Label(frame, text="Machine 1 Source Path:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Machine 1 Source Path:",font=font).grid(row=0, column=0, padx=5, pady=5, sticky="e")
         machine1_source_entry = tk.Entry(frame, width=60)
         machine1_source_entry.grid(row=0, column=1, padx=5, pady=5)
         machine1_source_entry.insert(0, send_form_last_inputs.get('machine1_source_path', ''))
 
-        tk.Label(frame, text="Machine 2 Destination Path:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Machine 2 Destination Path:",font=font).grid(row=1, column=0, padx=5, pady=5, sticky="e")
         machine2_destination_entry = tk.Entry(frame, width=60)
         machine2_destination_entry.grid(row=1, column=1, padx=5, pady=5)
         machine2_destination_entry.insert(0, send_form_last_inputs.get('machine2_destination_path', ''))
 
-        tk.Label(frame, text="Host (IP or hostname):").grid(row=2, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Host (IP or hostname):",font=font).grid(row=2, column=0, padx=5, pady=5, sticky="e")
         host_entry = tk.Entry(frame, width=60)
         host_entry.grid(row=2, column=1, padx=5, pady=5)
         host_entry.insert(0, send_form_last_inputs.get('host', ''))
 
-        tk.Label(frame, text="Username:").grid(row=3, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Username:",font=font).grid(row=3, column=0, padx=5, pady=5, sticky="e")
         username_entry = tk.Entry(frame, width=60)
         username_entry.grid(row=3, column=1, padx=5, pady=5)
         username_entry.insert(0, send_form_last_inputs.get('username', ''))
 
-        tk.Label(frame, text="Password:").grid(row=4, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Password:",font=font).grid(row=4, column=0, padx=5, pady=5, sticky="e")
         password_entry = tk.Entry(frame, width=60, show='*')
         password_entry.grid(row=4, column=1, padx=5, pady=5)
 
-        tk.Label(frame, text="Frequency (minutes):").grid(row=5, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Frequency (minutes):",font=font).grid(row=5, column=0, padx=5, pady=5, sticky="e")
         frequency_entry = tk.Entry(frame, width=10)
         frequency_entry.grid(row=5, column=1, padx=5, pady=5, sticky="w")
         frequency_entry.insert(0, send_form_last_inputs.get('frequency', ''))
 
-        tk.Label(frame, text="File Type:").grid(row=6, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="File Type:",font=font).grid(row=6, column=0, padx=5, pady=5, sticky="e")
         file_type_var = tk.StringVar(value=send_form_last_inputs.get('file_type', 'txt'))
         file_type_spinner = ttk.Combobox(frame, textvariable=file_type_var, values=["txt", "csv"], state="readonly")
         file_type_spinner.grid(row=6, column=1, padx=5, pady=5,sticky="w")
 
-        tk.Label(frame, text="Transfer Method:").grid(row=7, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Transfer Method:",font=font).grid(row=7, column=0, padx=5, pady=5, sticky="e")
         transfer_method_var = tk.StringVar(value=send_form_last_inputs.get('transfer_method', 'copy'))
         transfer_spinner = ttk.Combobox(frame, textvariable=transfer_method_var, values=["copy", "cut"], state="readonly")
         transfer_spinner.grid(row=7, column=1, padx=5, pady=5,sticky="w")
@@ -265,56 +268,56 @@ def create_gui():
             transfer_files(source_path, destination_path, host, username, password, transfer_method, file_type)
 
         # Create the buttons
-        transfer_button = tk.Button(frame, text="Schedule Transfer", command=on_transfer_button_click,bg="#043052", fg="#FFFFFF")
+        transfer_button = tk.Button(frame, text="Schedule Transfer",font=font, command=on_transfer_button_click,bg="#043052", fg="#FFFFFF")
         transfer_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="e")
 
         # Button to force transfer
-        force_transfer_button = tk.Button(frame, text="Force Transfer", command=on_force_transfer_button_click,bg="#043052", fg="#FFFFFF")
+        force_transfer_button = tk.Button(frame, text="Force Transfer",font=font, command=on_force_transfer_button_click,bg="#043052", fg="#FFFFFF")
         force_transfer_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="w") 
 
         # Create a label for the copyright text
-        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("Arial", 10))
+        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=font)
         copyright_label.grid(row=9, column=0, columnspan=2, pady=10)  # Position at bottom-right corner
 
 
 
     def create_machine2_form(frame):
         # Create the form elements for Machine 2
-        tk.Label(frame, text="Machine 2 Source Path:",).grid(row=0, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Machine 2 Source Path:",font=font).grid(row=0, column=0, padx=5, pady=5, sticky="e")
         machine2_source_entry = tk.Entry(frame, width=60)
         machine2_source_entry.grid(row=0, column=1, padx=5, pady=5)
         machine2_source_entry.insert(0, get_form_last_inputs.get('machine2_source_path', ''))
         
-        tk.Label(frame, text="Machine 1 destination Path:",).grid(row=1, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Machine 1 destination Path:",font=font).grid(row=1, column=0, padx=5, pady=5, sticky="e")
         machine1_destination_entry = tk.Entry(frame, width=60)
         machine1_destination_entry.grid(row=1, column=1, padx=5, pady=5)
         machine1_destination_entry.insert(0, get_form_last_inputs.get('machine1_destination_path', ''))
 
-        tk.Label(frame, text="Host (IP or hostname):",).grid(row=2, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Host (IP or hostname):",font=font).grid(row=2, column=0, padx=5, pady=5, sticky="e")
         host_entry = tk.Entry(frame, width=60)
         host_entry.grid(row=2, column=1, padx=5, pady=5)
         host_entry.insert(0, get_form_last_inputs.get('host', ''))
 
-        tk.Label(frame, text="Username:",).grid(row=3, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Username:",font=font).grid(row=3, column=0, padx=5, pady=5, sticky="e")
         username_entry = tk.Entry(frame, width=60)
         username_entry.grid(row=3, column=1, padx=5, pady=5)
         username_entry.insert(0, get_form_last_inputs.get('username', ''))
 
-        tk.Label(frame, text="Password:",).grid(row=4, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Password:",font=font).grid(row=4, column=0, padx=5, pady=5, sticky="e")
         password_entry = tk.Entry(frame, width=60, show='*')
         password_entry.grid(row=4, column=1, padx=5, pady=5)
 
-        tk.Label(frame, text="Frequency (minutes):",).grid(row=5, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Frequency (minutes):",font=font).grid(row=5, column=0, padx=5, pady=5, sticky="e")
         frequency_entry = tk.Entry(frame, width=10)
         frequency_entry.grid(row=5, column=1, padx=5, pady=5, sticky="w")
         frequency_entry.insert(0, get_form_last_inputs.get('frequency', ''))
 
-        tk.Label(frame, text="File Type:",).grid(row=6, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="File Type:",font=font).grid(row=6, column=0, padx=5, pady=5, sticky="e")
         file_type_var = tk.StringVar(value=get_form_last_inputs.get('file_type', 'txt'))
         file_type_spinner = ttk.Combobox(frame, textvariable=file_type_var, values=["txt", "csv"], state="readonly")
         file_type_spinner.grid(row=6, column=1, padx=5, pady=5,sticky="w")
 
-        tk.Label(frame, text="Transfer Method:").grid(row=7, column=0, padx=5, pady=5, sticky="e")
+        tk.Label(frame, text="Transfer Method:",font=font).grid(row=7, column=0, padx=5, pady=5, sticky="e")
         transfer_method_var = tk.StringVar(value=get_form_last_inputs.get('transfer_method', 'copy'))
         transfer_spinner = ttk.Combobox(frame, textvariable=transfer_method_var, values=["copy", "cut"], state="readonly")
         transfer_spinner.grid(row=7, column=1, padx=5, pady=5,sticky="w")
@@ -380,15 +383,15 @@ def create_gui():
             messagebox.showinfo("Scheduled", f"Transfer scheduled every {frequency} minutes.")
 
         # Button to schedule get transfer
-        transfer_get_button = tk.Button(frame, text="Schedule Transfer get", command=on_transfer_get_button_click,bg="#043052", fg="#FFFFFF")
+        transfer_get_button = tk.Button(frame, text="Schedule Transfer get", command=on_transfer_get_button_click,bg="#043052", fg="#FFFFFF",font=font)
         transfer_get_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="e")
         
         # Button to force get files
-        force_get_files_button = tk.Button(frame, text="get files", command=on_get_files_button_click,bg="#043052", fg="#FFFFFF")
+        force_get_files_button = tk.Button(frame, text="get files", command=on_get_files_button_click,bg="#043052", fg="#FFFFFF",font=font)
         force_get_files_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="w")
 
         # Create a label for the copyright text
-        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("Arial", 10))
+        copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=font)
         copyright_label.grid(row=9, column=0, columnspan=2, pady=10)  # Position at bottom-right corner
 
     notebook = ttk.Notebook(root)
