@@ -3,6 +3,7 @@ import os
 import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
+from tkinter import font as tkfont
 import schedule
 import time
 import threading
@@ -132,6 +133,9 @@ def run_scheduler():
 def create_gui():
     root = tk.Tk()
     root.title("File Transfer")
+    # Set the window size and make it non-resizable
+    root.geometry("550x450")
+    root.resizable(False, False)
 
     script_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
      # Specify the relative path to the image file
@@ -148,6 +152,14 @@ def create_gui():
 
     send_form_last_inputs = load_send_form_inputs()
     get_form_last_inputs = load_get_form_inputs()
+
+    # font_dir = os.path.join(script_dir, "fonts")
+    # RedditMono-Regular_font_path = os.path.join(font_dir, "RedditMono-Regular.ttf")
+    # root.option_add("*Font", tkfont.Font(family="Roboto", size=10, name="Roboto", exists=False))
+    # root.option_add("*TLabel.Font", tkfont.Font(family="Roboto", size=10))
+    # root.option_add("*TButton.Font", tkfont.Font(family="Roboto", size=10))
+    # root.option_add("*TEntry.Font", tkfont.Font(family="Roboto", size=10))
+    # root.option_add("*TCombobox.Font", tkfont.Font(family="Roboto", size=10))
 
 
     def create_machine1_form(frame):
