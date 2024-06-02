@@ -133,6 +133,7 @@ def run_scheduler():
 def create_gui():
     root = tk.Tk()
     root.title("File Transfer")
+
     # Set the window size and make it non-resizable
     root.geometry("550x450")
     root.resizable(False, False)
@@ -143,10 +144,6 @@ def create_gui():
     # Create a custom style to set the background color of frames
     style = ttk.Style()
     style.configure("Custom.TFrame", background="#F1F1F1")
-
-    
-
-
 
     script_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
      # Specify the relative path to the image file
@@ -199,12 +196,12 @@ def create_gui():
         tk.Label(frame, text="File Type:").grid(row=6, column=0, padx=5, pady=5, sticky="e")
         file_type_var = tk.StringVar(value=send_form_last_inputs.get('file_type', 'txt'))
         file_type_spinner = ttk.Combobox(frame, textvariable=file_type_var, values=["txt", "csv"], state="readonly")
-        file_type_spinner.grid(row=6, column=1, padx=5, pady=5)
+        file_type_spinner.grid(row=6, column=1, padx=5, pady=5,sticky="w")
 
         tk.Label(frame, text="Transfer Method:").grid(row=7, column=0, padx=5, pady=5, sticky="e")
         transfer_method_var = tk.StringVar(value=send_form_last_inputs.get('transfer_method', 'copy'))
         transfer_spinner = ttk.Combobox(frame, textvariable=transfer_method_var, values=["copy", "cut"], state="readonly")
-        transfer_spinner.grid(row=7, column=1, padx=5, pady=5)
+        transfer_spinner.grid(row=7, column=1, padx=5, pady=5,sticky="w")
 
         # Transfer button
         def on_transfer_button_click():
@@ -269,11 +266,11 @@ def create_gui():
 
         # Create the buttons
         transfer_button = tk.Button(frame, text="Schedule Transfer", command=on_transfer_button_click,bg="#043052", fg="#FFFFFF")
-        transfer_button.grid(row=8, column=0, columnspan=1, pady=10)
+        transfer_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="e")
 
         # Button to force transfer
         force_transfer_button = tk.Button(frame, text="Force Transfer", command=on_force_transfer_button_click,bg="#043052", fg="#FFFFFF")
-        force_transfer_button.grid(row=8, column=1, columnspan=1, pady=10) 
+        force_transfer_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="w") 
 
         # Create a label for the copyright text
         copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("Arial", 10))
@@ -315,12 +312,12 @@ def create_gui():
         tk.Label(frame, text="File Type:",).grid(row=6, column=0, padx=5, pady=5, sticky="e")
         file_type_var = tk.StringVar(value=get_form_last_inputs.get('file_type', 'txt'))
         file_type_spinner = ttk.Combobox(frame, textvariable=file_type_var, values=["txt", "csv"], state="readonly")
-        file_type_spinner.grid(row=6, column=1, padx=5, pady=5)
+        file_type_spinner.grid(row=6, column=1, padx=5, pady=5,sticky="w")
 
         tk.Label(frame, text="Transfer Method:").grid(row=7, column=0, padx=5, pady=5, sticky="e")
         transfer_method_var = tk.StringVar(value=get_form_last_inputs.get('transfer_method', 'copy'))
         transfer_spinner = ttk.Combobox(frame, textvariable=transfer_method_var, values=["copy", "cut"], state="readonly")
-        transfer_spinner.grid(row=7, column=1, padx=5, pady=5)
+        transfer_spinner.grid(row=7, column=1, padx=5, pady=5,sticky="w")
 
         # Button to get files from machine 2
         def on_get_files_button_click():
@@ -384,11 +381,11 @@ def create_gui():
 
         # Button to schedule get transfer
         transfer_get_button = tk.Button(frame, text="Schedule Transfer get", command=on_transfer_get_button_click,bg="#043052", fg="#FFFFFF")
-        transfer_get_button.grid(row=8, column=0, columnspan=1, pady=10)
+        transfer_get_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="e")
         
         # Button to force get files
         force_get_files_button = tk.Button(frame, text="get files", command=on_get_files_button_click,bg="#043052", fg="#FFFFFF")
-        force_get_files_button.grid(row=8, column=1, columnspan=1, pady=10)
+        force_get_files_button.grid(row=8, column=1, columnspan=1, pady=10,sticky="w")
 
         # Create a label for the copyright text
         copyright_label = tk.Label(frame, text="© Groupe CHIALI 2024", font=("Arial", 10))
