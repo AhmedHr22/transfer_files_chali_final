@@ -106,7 +106,7 @@ def get_files(machine2_source_path, machine1_destination_path, host, username, p
                 sftp.get(remote_source_path, local_destination_path)
             elif transfer_method == "cut":
                 sftp.get(remote_source_path, local_destination_path)
-                os.remove(remote_source_path)
+                sftp.remove(remote_source_path)
         
             # Log transfer information
             with open(trace_file_path, "a") as trace_file:
@@ -240,7 +240,7 @@ def create_gui():
                 if not password or len(password) != 9:
                     raise Exception
             except Exception:
-                messagebox.showerror("Invalid input","please eneter a valid password")
+                messagebox.showerror("Invalid input","please enter a valid password")
                 return
             
             # Schedule the function at the specified frequency
@@ -259,6 +259,13 @@ def create_gui():
             transfer_method = transfer_method_var.get()
             file_type = file_type_var.get()
 
+            try:  
+                if not password or len(password) != 9:
+                    raise Exception    
+            except Exception:
+                messagebox.showerror("Invalid input","please enter a valid password")
+                return
+            
             # Save the inputs to the JSON file
             save_send_form_inputs({
                 'machine1_source_path': source_path,
@@ -338,6 +345,13 @@ def create_gui():
             transfer_method = transfer_method_var.get()
             file_type = file_type_var.get()
 
+            try:  
+                if not password or len(password) != 9:
+                    raise Exception    
+            except Exception:
+                messagebox.showerror("Invalid input","please enter a valid password")
+                return
+
             # Save the inputs to the JSON file
             save_get_form_inputs({
                 'machine2_source_path': machine2_source_path,
@@ -372,7 +386,7 @@ def create_gui():
                 if not password or len(password) != 9:
                     raise Exception    
             except Exception:
-                messagebox.showerror("Invalid input","please eneter a valid password")
+                messagebox.showerror("Invalid input","please enter a valid password")
                 return           
             
             # Save the inputs to the JSON file
