@@ -221,9 +221,6 @@ def create_gui():
                 messagebox.showerror("Invalid Input", "Please enter a valid frequency in minutes.")
                 return
             
-            
-
-
             # Save the inputs to the JSON file
             save_send_form_inputs({
                 'machine1_source_path': source_path,
@@ -234,14 +231,23 @@ def create_gui():
                 'file_type': file_type,
                 'transfer_method': transfer_method
             })
-
+     
             # Define the function to be scheduled
             def scheduled_transfer():
                 transfer_files(source_path, destination_path, host, username, password, transfer_method, file_type)
-
+           
+            try:  
+                if not password or len(password) != 9:
+                    raise Exception
+            except Exception:
+                messagebox.showerror("Invalid input","please eneter a valid password")
+                return
+            
             # Schedule the function at the specified frequency
             schedule.every(frequency).minutes.do(scheduled_transfer)
             print(f"Scheduled transfer every {frequency} minutes.")
+
+                
 
          # Function to handle immediate file transfer
         def on_force_transfer_button_click():
@@ -362,6 +368,13 @@ def create_gui():
                 messagebox.showerror("Invalid Input", "Please enter a valid frequency in minutes.")
                 return
 
+            try:  
+                if not password or len(password) != 9:
+                    raise Exception    
+            except Exception:
+                messagebox.showerror("Invalid input","please eneter a valid password")
+                return           
+            
             # Save the inputs to the JSON file
             save_get_form_inputs({
                 'machine2_source_path': machine2_source_path,
