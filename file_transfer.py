@@ -37,7 +37,7 @@ def load_get_form_inputs():
     return {}
 
 def transfer_files(source_path, destination_path, host, username, password, transfer_method, file_type):
-    print(f"Transferring files from {source_path} to {destination_path} on host {host} with username {username}")
+    # print(f"Transferring files from {source_path} to {destination_path} on host {host} with username {username}")
     # Connect to the destination machine using SSH
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -73,7 +73,6 @@ def transfer_files(source_path, destination_path, host, username, password, tran
     sftp.close()
     ssh.close()
     print("File transfer completed")
-    messagebox.showinfo("Transfer Complete", "File transfer completed successfully")
 
 def get_files(machine2_source_path, machine1_destination_path, host, username, password, transfer_method, file_type):
     print(f"Getting files from {machine2_source_path} on host {host} with username {username}")
@@ -121,7 +120,6 @@ def get_files(machine2_source_path, machine1_destination_path, host, username, p
     ssh.close()
 
     print("File retrieval completed")
-    messagebox.showinfo("Transfer Complete", "File transfer completed successfully")
 
 # Function to run the scheduler in a separate thread
 def run_scheduler():
@@ -222,6 +220,9 @@ def create_gui():
             except ValueError:
                 messagebox.showerror("Invalid Input", "Please enter a valid frequency in minutes.")
                 return
+            
+            
+
 
             # Save the inputs to the JSON file
             save_send_form_inputs({
@@ -241,7 +242,6 @@ def create_gui():
             # Schedule the function at the specified frequency
             schedule.every(frequency).minutes.do(scheduled_transfer)
             print(f"Scheduled transfer every {frequency} minutes.")
-            messagebox.showinfo("Scheduled", f"Transfer scheduled every {frequency} minutes.")
 
          # Function to handle immediate file transfer
         def on_force_transfer_button_click():
@@ -380,7 +380,6 @@ def create_gui():
             # Schedule the function at the specified frequency
             schedule.every(frequency).minutes.do(scheduled_transfer_get)
             print(f"Scheduled transfer every {frequency} minutes.")
-            messagebox.showinfo("Scheduled", f"Transfer scheduled every {frequency} minutes.")
 
         # Button to schedule get transfer
         transfer_get_button = tk.Button(frame, text="Schedule Transfer get", command=on_transfer_get_button_click,bg="#043052", fg="#FFFFFF",font=font)
